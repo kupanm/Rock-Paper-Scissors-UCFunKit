@@ -21,6 +21,8 @@ int main (void)
 
     while (1) {
 
+        led_set(LED1, false);
+
         while (!button_release_event_p(BUTTON1) && playerHand == 0) {
             playerHand = selectHand();
             button_update();
@@ -33,12 +35,11 @@ int main (void)
         opponentHand = ir_uart_getc();
 
         if (isWon(playerHand, opponentHand)) {
-                led_set(LED1, true);
+            led_set(LED1, true);
         }
         
         while (!button_release_event_p(BUTTON1)) {
             button_update();
         }
-        led_set(LED1, false);
     }
 }
