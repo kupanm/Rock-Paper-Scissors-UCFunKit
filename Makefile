@@ -43,10 +43,37 @@ handSelect.o: handSelect.c
 gameLogic.o: gameLogic.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
+font.o: ../../utils/font.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+pacer.o: ../../utils/pacer.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+tinygl.o: ../../utils/tinygl.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+timer.o: ../../drivers/avr/timer.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+timer0.o: ../../drivers/avr/timer0.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+usart1.o: ../../drivers/avr/usart1.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+display.o: ../../drivers/display.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+ledmat.o: ../../drivers/ledmat.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+prescale.o: ../../drivers/avr/prescale.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
 
 
 # Link: create ELF output file from object files.
-game.out: game.o navswitch.o button.o ir_uart.o led.o pio.o system.o handSelect.o gameLogic.o
+game.out: game.o navswitch.o button.o ir_uart.o led.o pio.o system.o handSelect.o gameLogic.o font.o pacer.o tinygl.o timer.o timer0.o usart1.o display.o ledmat.o prescale.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
