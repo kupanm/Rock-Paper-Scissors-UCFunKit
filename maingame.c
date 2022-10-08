@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 
+/*Will return true if the player has won based on whether they chose rock ('R'), paper ('P') or scissors ('S') */
 bool isWon(char player, char otherPlayer)
 {
     bool won = false;
@@ -20,6 +21,7 @@ bool isWon(char player, char otherPlayer)
     return won;
 }
 
+/*Will return true if the player has lost*/
 bool isLoss(char player, char otherPlayer)
 {
     bool loss = false;
@@ -33,6 +35,7 @@ bool isLoss(char player, char otherPlayer)
     return loss;
 }   
 
+/*Will return true if the player has drawn with the other player*/
 bool isDraw(char player, char otherPlayer) 
 {
     return (player == otherPlayer);
