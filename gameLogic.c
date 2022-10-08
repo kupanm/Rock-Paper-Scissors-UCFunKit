@@ -1,4 +1,4 @@
-/** @file   maingame.c
+/** @file   gameLogic.c
     @author K.N. Mugutso
     @date   08 Oct 2022
     @brief  Main game (just is won or draw or loss).
@@ -7,7 +7,8 @@
 
 #include <stdbool.h>
 
-/*Will return true if the player has won based on whether they chose rock ('R'), paper ('P') or scissors ('S') */
+/*Will return true if the player has won based on whether
+  they chose rock ('R'), paper ('P') or scissors ('S') */
 bool isWon(char player, char otherPlayer)
 {
     bool won = false;
