@@ -25,7 +25,7 @@ navswitch.o: ../../drivers/navswitch.c
 button.o: ../../drivers/button.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-ir_serial.o: ../../drivers/ir_serial.c
+ir_uart.o: ../../drivers/test/ir_uart.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 led.o: ../../drivers/led.c
