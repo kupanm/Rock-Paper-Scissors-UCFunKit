@@ -46,7 +46,7 @@ gameLogic.o: gameLogic.c
 
 
 # Link: create ELF output file from object files.
-game.out: game.o navswitch.o button.o ir_serial.o led.o pio.o system.o handSelect.o gameLogic.o
+game.out: game.o navswitch.o button.o ir_uart.o led.o pio.o system.o handSelect.o gameLogic.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
