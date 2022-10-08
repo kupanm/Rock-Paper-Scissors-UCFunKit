@@ -16,7 +16,7 @@ all: game.out
 
 
 # Compile: create object files from C source files. !!!*ATTENTION*!!!: may have to add the modules that the drivers also include such as system, pio, delay etc.
-game.o: game.c ../../drivers/avr/system.h ../../drivers/avr/navswitch.h ../../drivers/avr/button.h ../../drivers/avr/ir_serial.h ../../drivers/avr/led.h ../../drivers/avr/handSelect.h ../../drivers/avr/gameLogic.h
+game.o: game.c ../../drivers/avr/system.h ../ence260-ucfk4/drivers/navswitch.h ../../drivers/avr/button.h ../../drivers/avr/ir_serial.h ../../drivers/avr/led.h ../../drivers/avr/handSelect.h ../../drivers/avr/gameLogic.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 navswitch.o: ../../drivers/navswitch.c ../../drivers/avr/delay.h ../../drivers/avr/pio.h ../../drivers/avr/system.h ../../drivers/navswitch.h
