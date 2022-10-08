@@ -22,10 +22,10 @@ game.o: game.c
 navswitch.o: ../../drivers/navswitch.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-button.o: button.c
+button.o: ../../drivers/button.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-ir_serial.o: ir_serial.c
+ir_serial.o: ../../drivers/ir_serial.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 led.o: ../../drivers/led.c
@@ -40,7 +40,7 @@ system.o: ../../drivers/avr/system.c
 handSelect.o: handSelect.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-gameLogic.o: gameLogic.c 
+gameLogic.o: gameLogic.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 
