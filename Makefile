@@ -16,31 +16,31 @@ all: game.out
 
 
 # Compile: create object files from C source files. !!!*ATTENTION*!!!: may have to add the modules that the drivers also include such as system, pio, delay etc.
-game.o: game.c ../../drivers/avr/system.h ../ence260-ucfk4/drivers/navswitch.h ../../drivers/avr/button.h ../../drivers/avr/ir_serial.h ../../drivers/avr/led.h ../../drivers/avr/handSelect.h ../../drivers/avr/gameLogic.h
+game.o: game.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-navswitch.o: ../../drivers/navswitch.c ../../drivers/avr/delay.h ../../drivers/avr/pio.h ../../drivers/avr/system.h ../../drivers/navswitch.h
+navswitch.o: ../../drivers/navswitch.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-button.o: button.c ../../drivers/avr/pio.h ../../drivers/avr/system.h button.h
+button.o: button.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-ir_serial.o: ir_serial.c ../../ence260-ucfk4/drivers/ir_serial.h ../../drivers/avr/delay.h
+ir_serial.o: ir_serial.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-led.o: ../../drivers/led.c ../../drivers/avr/pio.h ../../drivers/avr/system.h ../../drivers/led.h
+led.o: ../../drivers/led.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-pio.o: ../../drivers/avr/pio.c ../../drivers/avr/pio.h ../../drivers/avr/system.h
+pio.o: ../../drivers/avr/pio.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
+system.o: ../../drivers/avr/system.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-handSelect.o: handSelect.c ../../assignment/group_226/handSelect.h ../../drivers/avr/system.h
+handSelect.o: handSelect.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-gameLogic.o: gameLogic.c ../../assignment/group_226/gameLogic.h
+gameLogic.o: gameLogic.c 
 	$(CC) -c $(CFLAGS) $< -o $@
 
 
