@@ -20,4 +20,7 @@ bool isLoss(char player, char otherPlayer);
 /*Will return true if the player has drawn with the other player*/
 bool isDraw(char player, char otherPlayer);
 
+/* Selects hand based on last navstick press */
+char selectHand(void);
+
 #endif
