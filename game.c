@@ -1,10 +1,10 @@
 #include "system.h"
 #include "navswitch.h"
 #include "button.h"
-#include "ir_serial.h"
+#include "ir_uart.h"
 #include "led.h"
 #include "handSelect.h"
-#include "main"
+#include "gameLogic.h"
 
 #include <stdbool.h>
 
@@ -13,27 +13,32 @@ int main (void)
     system_init ();
     navswitch_init();
     button_init();
-    ir_serial_init();
+    ir_uart_init();
     led_init();
 
-    char playerHand;
+    char playerHand = 0;
     char opponentHand;
-    ir_serial_ret receiveErrorCode;
 
     while (1) {
 
-        while (!button_release_event_p(BUTTONS_NUM))   {
+        while (!button_release_event_p(BUTTON1) && playerHand == 0) {
             playerHand = selectHand();
             button_update();
         }
 
-        ir_serial_transmit(playerHand);
-        receiveErrorCode = ir_serial_receive(&opponentHand);
-
-        if (receiveErrorCode == IR_SERIAL_OK) {
-            if (isWon(playerHand, opponentHand)) {
-                led_set(LED1, true);
-            }
+        ir_uart_putc(playerHand);
+        while (!ir_uart_read_ready_p()) {
+            continue;
         }
+        opponentHand = ir_uart_getc();
+
+        if (isWon(playerHand, opponentHand)) {
+                led_set(LED1, true);
+        }
+        
+        while (!button_release_event_p(BUTTON1)) {
+            button_update();
+        }
+        led_set(LED1, false);
     }
 }
