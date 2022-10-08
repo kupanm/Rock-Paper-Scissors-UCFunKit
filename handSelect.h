@@ -1,4 +1,4 @@
-/** @file   handSelect.c
+/** @file   handSelect.h
     @author David Liang
     @date   08/10/2022
     @brief  Hand selection in rock paper scissors game using navstick.
@@ -8,6 +8,7 @@
 #define HANDSELECT_H
 
 #include "system.h"
+#include "navswitch.h"
 
 
 #define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
