@@ -5,7 +5,6 @@
 */
 
 #include "system.h"
-#include "navswitch.h"
 
 
 /* Selects hand based on last navstick press */
