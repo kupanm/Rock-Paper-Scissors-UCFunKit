@@ -5,6 +5,8 @@
     @note   This will just see if the game has resulted in a win, loss or draw for the specific player.
 */
 
+#include <stdbool.h>
+
 bool isWon(char player, char otherPlayer)
 {
     bool won = false;
