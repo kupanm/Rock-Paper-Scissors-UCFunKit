@@ -12,6 +12,7 @@
 char selectHand(void)
 {
     char handCharacter;
+    navswitch_update();
     if (ROCK) {
         handCharacter = 'R';
     }
