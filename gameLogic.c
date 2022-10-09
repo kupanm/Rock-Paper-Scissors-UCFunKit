@@ -6,6 +6,31 @@
 */
 
 #include <stdbool.h>
+#include "system.h"
+#include "navswitch.h"
+#include "gameLogic.h"
+
+#define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
+#define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
+#define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
+
+
+/* Selects hand based on last navstick press */
+//char selectHand(void)
+//{
+//    char handCharacter;
+//    navswitch_update();
+//    if (ROCK) {
+//        handCharacter = 'R';
+//    }
+//    if (PAPER) {
+//        handCharacter = 'P';
+//    }
+//    if (SCISSORS) {
+//        handCharacter = 'S';
+//    }
+//    return handCharacter;
+//}
 
 /*Will return true if the player has won based on whether
   they chose rock ('R'), paper ('P') or scissors ('S') */

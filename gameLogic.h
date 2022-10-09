@@ -9,6 +9,8 @@
 #define GAMELOGIC_H
 
 #include <stdbool.h>
+/* Selects hand based on last navstick press */
+char selectHand(void);
 
 /*Will return true if the player has won based on whether
   they chose rock ('R'), paper ('P') or scissors ('S') */
