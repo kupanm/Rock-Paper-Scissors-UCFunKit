@@ -16,6 +16,8 @@
 #define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
 #define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
 #define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
+
+/*will display the operator that the player has chosen*/
 void display_character (char character)
 {
     char buffer[2];
@@ -23,6 +25,18 @@ void display_character (char character)
     buffer[0] = character;
     buffer[1] = '\0';
     tinygl_text (buffer);
+}
+
+/*will initialise the button*/
+void init_button(void)
+{
+	DDRD &=~ (1<<7);
+}
+
+/*will check if the button has been pressed*/
+bool button_pressed(void)
+{
+	return ((PIND & (1<<7))!=0);
 }
 
 int main(void)
@@ -34,30 +48,28 @@ int main(void)
     tinygl_text_speed_set (MESSAGE_RATE);
     led_init();
     led_set(LED1, false);
-    /* TODO: Initialise navigation switch driver.  */
     ir_uart_init();
     navswitch_init();
     pacer_init (PACER_RATE);
+    tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     char player;
     char otherPlayer;
-    DDRD &=~ (1<<7);
-    player = 'S';
+    init_button();
     while(1) {
         pacer_wait ();
         tinygl_update ();
         navswitch_update();
         if (ROCK) {
-            player = 'R';
-        }
-        if (PAPER) {
-            player = 'P';
-        }
-        if (SCISSORS) {
-            player = 'S';
-        }
-        display_character(player);
-        if ((PIND & (1<<7))!=0) {
-            ir_uart_putc(player);        
+        	player = 'R';
+		}
+		if (PAPER) {
+		    player = 'P';
+		}
+		if (SCISSORS) {
+		    player = 'S';
+		}
+        if (button_pressed()) {
+            ir_uart_putc(player);       
         }
         if (ir_uart_read_ready_p())
         {
@@ -67,10 +79,14 @@ int main(void)
             }
         }
         if (isWon(player, otherPlayer)) {
-            led_set(LED1, true);  
+            led_set(LED1, true);
+            tinygl_text("You Win!\0"); 
         }
-        display_character(player);
+        if (isLoss(player, otherPlayer)) {
+            tinygl_text("You Lose!\0"); 
+        }
+        if (isDraw(player, otherPlayer)) {
+        	tinygl_text("Draw!\0");
+        }
     }   
-
-
 }
