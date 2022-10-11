@@ -4,10 +4,10 @@
     @brief  Controls button task.
 */
 
+#include "buttonTask.h"
 #include "button.h"
 #include "pacer.h"
 #include <stdbool.h>
-#define NAVRATE 20
 
 static uint8_t buttonTick;
 
@@ -18,7 +18,6 @@ void buttonTaskInit(void)
 {
     button_init();
     buttonTick = 0;
-
 }
 
 /**
@@ -29,7 +28,7 @@ static bool buttonTask(void)
 {
     bool buttonPushed = false;
     button_update();
-    if (button_push_event()) {
+    if (button_push_event_p(BUTTON1)) {
         buttonPushed = true;
     }
     return buttonPushed;
@@ -40,11 +39,11 @@ static bool buttonTask(void)
  * time to execute the navswitch task.
  * @returns bool in regards to if the button has been pushed.
 */
-bool navTaskCheck(pacer_rate_t pacerRate)
+bool buttonTaskCheck(pacer_rate_t pacerRate)
 {
     buttonTick++;
     bool buttonPushed = false;
-    if (buttonTick >= pacerRate/NAVRATE) {
+    if (buttonTick >= pacerRate/BUTTONRATE) {
         buttonPushed = buttonTask();
         buttonTick = 0;
     }

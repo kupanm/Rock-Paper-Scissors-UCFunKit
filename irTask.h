@@ -9,16 +9,14 @@
 
 #include "pacer.h"
 
+#define IRPUTRATE 500
+#define IRGETRATE 100
+
 /**
  * Initialises IR communication.
  * 
  */
 void irTaskInit(void);
-
-/**
- * Sends a character. 
- */
-static void irPutTask(char sendChar);
 
 /** 
  * Increments IR put tick and checks if it is the appropriate 
@@ -26,17 +24,10 @@ static void irPutTask(char sendChar);
 */
 void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar);
 
-/**
- * Receives a character if there is one available. 
- * Otherwise, returns dummy character X.
- * @return the character received or X.
- */
-static char irGetTask(void);
-
 /** 
  * Increments IR get tick and checks if it is the appropriate 
  * time to execute the IR get task.
- * @return the character received or X.
+ * @return the character received or Y.
 */
 char irGetTaskCheck(pacer_rate_t pacerRate);
 

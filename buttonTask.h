@@ -9,22 +9,18 @@
 
 #include "pacer.h"
 
+#define BUTTONRATE 20
+
 /**
  * Initialises the button.
  */
 void buttonTaskInit(void);
-
-/**
- * Updates the button state.
- * @returns bool in regards to if the button has been pushed.
- */
-static bool buttonTask(void);
 
 /** 
  * Increments navswitch tick and checks if it is the appropriate 
  * time to execute the navswitch task.
  * @returns bool in regards to if the button has been pushed.
 */
-bool navTaskCheck(pacer_rate_t pacerRate);
+bool buttonTaskCheck(pacer_rate_t pacerRate);
 
 #endif

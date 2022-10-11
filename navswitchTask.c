@@ -4,9 +4,9 @@
     @brief  Controls navswitch task and updates.
 */
 
+#include "navswitchTask.h"
 #include "navswitch.h"
 #include "pacer.h"
-#define NAVRATE 20
 
 static uint8_t navTick;
 

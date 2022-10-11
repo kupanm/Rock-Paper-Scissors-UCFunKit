@@ -9,16 +9,12 @@
 
 #include "pacer.h"
 
+#define displayRATE 250
+
 /**
  * Initialises the display.
  */
-void displayTaskInit(void);
-
-/**
- * Updates the display state.
- * 
- */
-static void displayTask(void);
+void displayTaskInit(pacer_rate_t pacerRate, uint16_t messageRate);
 
 /** 
  * Increments display tick and checks if it is the appropriate 

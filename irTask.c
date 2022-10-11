@@ -4,9 +4,10 @@
     @brief  Controls IR communication task and updates.
 */
 
+#include "irTask.h"
 #include "ir_uart.h"
 #include "pacer.h"
-#define IRRATE 50
+#include <ctype.h>
 
 static uint8_t irPutTick;
 static uint8_t irGetTick;
@@ -45,14 +46,17 @@ void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar)
 
 /**
  * Receives a character if there is one available. 
- * Otherwise, returns dummy character X.
- * @return the character received or X.
+ * Otherwise, returns dummy character Y.
+ * @return the character received or Y.
  */
 static char irGetTask(void)
 {
-    char receiveChar = 'X';
+    char receiveChar = 'Y';
     if (ir_uart_read_ready_p()) {
-        receiveChar = ir_uart_getc();
+        char ch = ir_uart_getc();
+            if (isprint(ch)) {
+                receiveChar = ch;
+            }
     }
     return receiveChar;
 }
@@ -60,15 +64,15 @@ static char irGetTask(void)
 /** 
  * Increments IR get tick and checks if it is the appropriate 
  * time to execute the IR get task.
- * @return the character received or X.
+ * @return the character received or Y.
 */
 char irGetTaskCheck(pacer_rate_t pacerRate)
 {
-    irTick++;
-    char receiveChar = 'X';
-    if (navTick >= pacerRate/IRRATE) {
+    irGetTick++;
+    char receiveChar = 'Y';
+    if (irGetTick >= pacerRate/IRRATE) {
         receiveChar = irGetTask();
-        navTick = 0;
+        irGetTick = 0;
     }
     return receiveChar;
 }

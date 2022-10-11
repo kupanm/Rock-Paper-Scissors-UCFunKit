@@ -4,21 +4,23 @@
     @brief  Controls display task rate and updates.
 */
 
-#include "tinygl.h"
+#include "displayTask.h"
 #include "pacer.h"
-#include "../fonts/font3x5_1.h"
-#define displayRATE 250
+#include "tinygl.h"
+#include "../fonts/font5x7_1.h"
+
 
 static uint8_t displayTick;
 
 /**
  * Initialises the display.
  */
-void displayTaskInit(void)
+void displayTaskInit(pacer_rate_t pacerRate, uint16_t messageRate)
 {
-    tinygl_init (PACER_RATE);
+    tinygl_init (pacerRate);
     tinygl_font_set (&font5x7_1);
-    tinygl_text_speed_set (MESSAGE_RATE);
+    tinygl_text_speed_set (messageRate);
+    tinygl_text_mode_set(TINYGL_TEXT_MODE_STEP);
     displayTick = 0;
 
 }

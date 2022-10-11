@@ -9,16 +9,12 @@
 
 #include "pacer.h"
 
+#define NAVRATE 20
+
 /**
  * Initialises the navswitch.
  */
 void navTaskInit(void);
-
-/**
- * Performs the navswitch task, updating the navswitch state.
- * 
- */
-void navTask(void);
 
 /** 
  * Increments navswitch tick and checks if it is the appropriate 
