@@ -10,7 +10,7 @@
 
 #include <stdbool.h>
 /* Selects hand based on last navstick press */
-char selectHand(void);
+char selectHand(char player);
 
 /*Will return true if the player has won based on whether
   they chose rock ('R'), paper ('P') or scissors ('S') */

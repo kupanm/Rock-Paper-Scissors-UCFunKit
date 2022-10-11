@@ -13,24 +13,6 @@
 #define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
 #define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
 
-
-/* Selects hand based on last navstick press */
-//char selectHand(void)
-//{
-//    char handCharacter;
-//    navswitch_update();
-//    if (ROCK) {
-//        handCharacter = 'R';
-//    }
-//    if (PAPER) {
-//        handCharacter = 'P';
-//    }
-//    if (SCISSORS) {
-//        handCharacter = 'S';
-//    }
-//    return handCharacter;
-//}
-
 #include "navswitch.h"
 
 #define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
@@ -74,10 +56,9 @@ bool isDraw(char player, char otherPlayer)
 }
 
 /* Selects hand based on last navstick press */
-char selectHand(void)
+char selectHand(char player)
 {
-    char handCharacter;
-    navswitch_update();
+    char handCharacter = player;
     if (ROCK) {
         handCharacter = 'R';
     }
