@@ -27,18 +27,6 @@ void display_character (char character)
     tinygl_text (buffer);
 }
 
-/*will initialise the button*/
-void init_button(void)
-{
-	DDRD &=~ (1<<7);
-}
-
-/*will check if the button has been pressed*/
-bool button_pressed(void)
-{
-	return ((PIND & (1<<7))!=0);
-}
-
 int main(void)
 {
     system_init ();
@@ -54,7 +42,7 @@ int main(void)
     tinygl_text_mode_set(TINYGL_TEXT_MODE_SCROLL);
     char player;
     char otherPlayer;
-    init_button();
+    button_init();
     while(1) {
         pacer_wait ();
         tinygl_update ();
@@ -68,8 +56,10 @@ int main(void)
 		if (SCISSORS) {
 		    player = 'S';
 		}
-        if (button_pressed()) {
-            ir_uart_putc(player);       
+        display_character(player);
+        if (button_push_event_p(1)) {
+            ir_uart_putc(player);  
+            led_set(LED1, true);     
         }
         if (ir_uart_read_ready_p())
         {
@@ -80,7 +70,7 @@ int main(void)
         }
         if (isWon(player, otherPlayer)) {
             led_set(LED1, true);
-            tinygl_text("You Win!\0"); 
+            tinygl_text("You Win!\0");
         }
         if (isLoss(player, otherPlayer)) {
             tinygl_text("You Lose!\0"); 
