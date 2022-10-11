@@ -1,7 +1,7 @@
 /** @file   irTask.h
     @author David Liang
     @date   09/10/2022
-    @brief  Controls ir tasks.
+    @brief  Controls IR tasks.
 */
 
 #ifndef IRTASK_H
@@ -29,12 +29,14 @@ void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar);
 /**
  * Receives a character if there is one available. 
  * Otherwise, returns dummy character X.
+ * @return the character received or X.
  */
 static char irGetTask(void);
 
 /** 
  * Increments IR get tick and checks if it is the appropriate 
  * time to execute the IR get task.
+ * @return the character received or X.
 */
 char irGetTaskCheck(pacer_rate_t pacerRate);
 

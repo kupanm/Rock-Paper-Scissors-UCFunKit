@@ -6,7 +6,7 @@
 
 #include "ir_uart.h"
 #include "pacer.h"
-#define IRRATE 250
+#define IRRATE 50
 
 static uint8_t irPutTick;
 static uint8_t irGetTick;
@@ -46,6 +46,7 @@ void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar)
 /**
  * Receives a character if there is one available. 
  * Otherwise, returns dummy character X.
+ * @return the character received or X.
  */
 static char irGetTask(void)
 {
@@ -59,6 +60,7 @@ static char irGetTask(void)
 /** 
  * Increments IR get tick and checks if it is the appropriate 
  * time to execute the IR get task.
+ * @return the character received or X.
 */
 char irGetTaskCheck(pacer_rate_t pacerRate)
 {

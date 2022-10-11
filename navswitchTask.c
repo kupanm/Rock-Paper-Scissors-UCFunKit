@@ -21,10 +21,10 @@ void navTaskInit(void)
 }
 
 /**
- * Performs the navswitch task, updating the navswitch state.
+ * Updates the navswitch state.
  * 
  */
-static void navTask()
+static void navTask(void)
 {
     navswitch_update();
 }

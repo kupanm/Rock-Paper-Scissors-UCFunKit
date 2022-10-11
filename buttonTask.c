@@ -25,7 +25,7 @@ void buttonTaskInit(void)
  * Updates the button state.
  * @returns bool in regards to if the button has been pushed.
  */
-static bool buttonTask()
+static bool buttonTask(void)
 {
     bool buttonPushed = false;
     button_update();
