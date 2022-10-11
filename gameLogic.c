@@ -1,8 +1,7 @@
 /** @file   gameLogic.c
     @author K.N. Mugutso
     @date   08 Oct 2022
-    @brief  Main game (just is won or draw or loss).
-    @note   This will just see if the game has resulted in a win, loss or draw for the specific player.
+    @brief  Contains all game logic.
 */
 
 #include <stdbool.h>
@@ -31,6 +30,13 @@
 //    }
 //    return handCharacter;
 //}
+
+#include "navswitch.h"
+
+#define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
+#define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
+#define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
+
 
 /*Will return true if the player has won based on whether
   they chose rock ('R'), paper ('P') or scissors ('S') */
@@ -65,4 +71,21 @@ bool isLoss(char player, char otherPlayer)
 bool isDraw(char player, char otherPlayer) 
 {
     return (player == otherPlayer);
+}
+
+/* Selects hand based on last navstick press */
+char selectHand(void)
+{
+    char handCharacter;
+    navswitch_update();
+    if (ROCK) {
+        handCharacter = 'R';
+    }
+    if (PAPER) {
+        handCharacter = 'P';
+    }
+    if (SCISSORS) {
+        handCharacter = 'S';
+    }
+    return handCharacter;
 }
