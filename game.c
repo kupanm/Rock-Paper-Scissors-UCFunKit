@@ -43,10 +43,12 @@ int main(void)
     char player;
     char otherPlayer;
     button_init();
+    bool gameFinished = false;
     while(1) {
         pacer_wait ();
         tinygl_update ();
         navswitch_update();
+        button_update();
         if (ROCK) {
         	player = 'R';
 		}
@@ -56,8 +58,8 @@ int main(void)
 		if (SCISSORS) {
 		    player = 'S';
 		}
-        display_character(player);
-        if (button_push_event_p(1)) {
+        // display_character(player);
+        if (button_push_event_p(BUTTON1)) {
             ir_uart_putc(player);  
             led_set(LED1, true);     
         }
@@ -68,15 +70,18 @@ int main(void)
                 otherPlayer = ch;
             }
         }
-        if (isWon(player, otherPlayer)) {
+        if (isWon(player, otherPlayer) && !gameFinished) {
             led_set(LED1, true);
             tinygl_text("You Win!\0");
+            gameFinished = true;
         }
-        if (isLoss(player, otherPlayer)) {
+        if (isLoss(player, otherPlayer) && !gameFinished) {
             tinygl_text("You Lose!\0"); 
+            gameFinished = true;
         }
-        if (isDraw(player, otherPlayer)) {
+        if (isDraw(player, otherPlayer) && !gameFinished) {
         	tinygl_text("Draw!\0");
+            gameFinished = true;
         }
     }   
 }
