@@ -38,7 +38,7 @@ static void irPutTask(char sendChar)
 void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar)
 {
     irPutTick++;
-    if (irPutTick >= pacerRate/IRRATE) {
+    if (irPutTick >= pacerRate/IRPUTRATE) {
         irPutTask(sendChar);
         irPutTick = 0;
     }
@@ -70,7 +70,7 @@ char irGetTaskCheck(pacer_rate_t pacerRate)
 {
     irGetTick++;
     char receiveChar = 'Y';
-    if (irGetTick >= pacerRate/IRRATE) {
+    if (irGetTick >= pacerRate/IRGETRATE) {
         receiveChar = irGetTask();
         irGetTick = 0;
     }
