@@ -11,9 +11,9 @@
 static uint8_t navTick;
 
 /**
- * Initialises the navswitch.
+ * Initialises the navswitch and its ticker.
  */
-void navTaskInit(void)
+void navInit(void)
 {
     navswitch_init();
     navTick = 0;

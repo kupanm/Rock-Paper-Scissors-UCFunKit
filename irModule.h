@@ -13,10 +13,10 @@
 #define IRGETRATE 100
 
 /**
- * Initialises IR communication.
+ * Initialises IR communication and their tickers.
  * 
  */
-void irTaskInit(void);
+void irInit(void);
 
 /** 
  * Increments IR put tick and checks if it is the appropriate 

@@ -14,11 +14,11 @@
 /**
  * Initialises the button.
  */
-void buttonTaskInit(void);
+void buttonInit(void);
 
 /** 
- * Increments navswitch tick and checks if it is the appropriate 
- * time to execute the navswitch task.
+ * Increments button tick and checks if it is the appropriate 
+ * time to execute the button task.
  * @returns bool in regards to if the button has been pushed.
 */
 bool buttonTaskCheck(pacer_rate_t pacerRate);

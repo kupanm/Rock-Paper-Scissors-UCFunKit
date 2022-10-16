@@ -64,3 +64,19 @@ char selectHand(char player)
     }
     return handCharacter;
 }
+
+/* Checks the result of the game.*/
+result_t checkGameResult(char player, char otherPlayer)
+{
+    result_t gameResult = ONGOING;
+    if (isWon(player, otherPlayer)) {
+        gameResult = WIN;
+    }
+    if (isLoss(player, otherPlayer)) {
+        gameResult = LOSE;
+    }
+    if (isDraw(player, otherPlayer)) {
+        gameResult = DRAW;
+    }
+    return gameResult;
+}

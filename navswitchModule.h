@@ -12,9 +12,9 @@
 #define NAVRATE 20
 
 /**
- * Initialises the navswitch.
+ * Initialises the navswitch and its ticker.
  */
-void navTaskInit(void);
+void navInit(void);
 
 /** 
  * Increments navswitch tick and checks if it is the appropriate 

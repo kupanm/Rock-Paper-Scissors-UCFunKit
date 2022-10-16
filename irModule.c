@@ -13,10 +13,10 @@ static uint8_t irPutTick;
 static uint8_t irGetTick;
 
 /**
- * Initialises IR communication.
+ * Initialises IR communication and their tickers.
  * 
  */
-void irTaskInit(void)
+void irInit(void)
 {
     ir_uart_init();
     irPutTick = 0;
@@ -53,6 +53,7 @@ static char irGetTask(void)
 {
     char receiveChar = 'Y';
     if (ir_uart_read_ready_p()) {
+        /* Error checking to account for IR interference */
         char ch = ir_uart_getc();
             if (isprint(ch)) {
                 receiveChar = ch;

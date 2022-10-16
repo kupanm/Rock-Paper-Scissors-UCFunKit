@@ -16,13 +16,13 @@ all: game.out
 
 
 # Compile: create object files from C source files. !!!*ATTENTION*!!!: may have to add the modules that the drivers also include such as system, pio, delay etc.
-game.o: game.c ../../drivers/avr/system.h ../../drivers/navswitch.h ../../drivers/button.h ../../drivers/avr/ir_uart.h ../../drivers/led.h gameLogic.h ../../utils/tinygl.h ../../fonts/font5x7_1.h ../../fonts/font3x5_1.h buttonModule.h displayModule.h irModule.h navswitchModule.h
+game.o: game.c ../../drivers/avr/system.h ../../drivers/navswitch.h ../../drivers/button.h ../../drivers/avr/ir_uart.h ../../drivers/led.h gameLogic.h ../../utils/tinygl.h ../../fonts/font5x7_1.h buttonModule.h displayModule.h irModule.h navswitchModule.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 buttonModule.o: buttonModule.c buttonModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/button.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-displayModule.o: displayModule.c displayModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h
+displayModule.o: displayModule.c displayModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h ../../fonts/font3x5_1.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 irModule.o: irModule.c irModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/avr/ir_uart.h

@@ -12,16 +12,16 @@
 static uint8_t buttonTick;
 
 /**
- * Initialises the button.
+ * Initialises the button and its ticker.
  */
-void buttonTaskInit(void)
+void buttonInit(void)
 {
     button_init();
     buttonTick = 0;
 }
 
 /**
- * Updates the button state.
+ * Updates the button state and checks if it's been pushed.
  * @returns bool in regards to if the button has been pushed.
  */
 static bool buttonTask(void)
@@ -29,14 +29,15 @@ static bool buttonTask(void)
     bool buttonPushed = false;
     button_update();
     if (button_push_event_p(BUTTON1)) {
+        /* Button has been pushed*/
         buttonPushed = true;
     }
     return buttonPushed;
 }
 
 /** 
- * Increments navswitch tick and checks if it is the appropriate 
- * time to execute the navswitch task.
+ * Increments button tick and checks if it is the appropriate 
+ * time to execute the button task.
  * @returns bool in regards to if the button has been pushed.
 */
 bool buttonTaskCheck(pacer_rate_t pacerRate)

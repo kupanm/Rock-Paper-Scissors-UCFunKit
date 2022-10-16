@@ -8,6 +8,15 @@
 #define GAMELOGIC_H
 
 #include <stdbool.h>
+
+/*Enum for the result of the game. Ongoing if it hasn't finished yet.*/
+typedef enum  {
+    ONGOING,
+    WIN,
+    LOSE,
+    DRAW
+} result_t;
+
 /* Selects hand based on last navstick press */
 char selectHand(char player);
 
@@ -20,5 +29,8 @@ bool isLoss(char player, char otherPlayer);
 
 /*Will return true if the player has drawn with the other player*/
 bool isDraw(char player, char otherPlayer);
+
+/* Checks the result of the game.*/
+result_t checkGameResult(char player, char otherPlayer);
 
 #endif
