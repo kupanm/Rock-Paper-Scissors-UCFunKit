@@ -1,8 +1,7 @@
 /** @file   gameLogic.h
-    @author David Liang
+    @author David Liang and K.N. Mugutso
     @date   08/10/2022
-    @brief  Main game (just is won or draw or loss).
-    @note   This will just see if the game has resulted in a win, loss or draw for the specific player.
+    @brief  Contains all game logic.
 */
 
 #ifndef GAMELOGIC_H

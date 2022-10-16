@@ -1,3 +1,9 @@
+/** @file   game.c
+    @author David Liang and K.N. Mugutso
+    @date   09/10/2022
+    @brief  Primary game controller for a UCFK4 rock paper scissors game.
+*/
+
 #include "system.h"
 #include "navswitch.h"
 #include "button.h"
@@ -11,22 +17,16 @@
 #include <avr/io.h>
 #include <stdbool.h>
 
-#include "buttonTask.h"
-#include "displayTask.h"
-#include "irTask.h"
-#include "navswitchTask.h"
+#include "buttonModule.h"
+#include "displayModule.h"
+#include "irModule.h"
+#include "navswitchModule.h"
 
 #define PACER_RATE 500
 #define MESSAGE_RATE 50
 #define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
 #define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
 #define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
-
-/*Player structure. No use now, but will be needed for round capability.*/
-typedef struct {
-    char hand;
-    uint8_t score;
-} player_t;
 
 /*Enum for the result of the game. Ongoing if it hasn't finished yet.*/
 typedef enum  {

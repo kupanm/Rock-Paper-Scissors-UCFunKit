@@ -1,5 +1,5 @@
 /** @file   gameLogic.c
-    @author K.N. Mugutso
+    @author David Liang and K.N. Mugutso
     @date   08 Oct 2022
     @brief  Contains all game logic.
 */
@@ -8,12 +8,6 @@
 #include "system.h"
 #include "navswitch.h"
 #include "gameLogic.h"
-
-#define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
-#define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
-#define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
-
-#include "navswitch.h"
 
 #define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
 #define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
