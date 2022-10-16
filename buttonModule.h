@@ -1,11 +1,11 @@
-/** @file   buttonTask.h
-    @author David Liang
+/** @file   buttonModule.h
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
     @brief  Controls button task.
 */
 
-#ifndef BUTTONTASK_H
-#define BUTTONTASK_H
+#ifndef BUTTONMODULE_H
+#define BUTTONMODULE_H
 
 #include "pacer.h"
 

@@ -1,10 +1,10 @@
-/** @file   displayTask.c
-    @author David Liang
+/** @file   displayModule.c
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
-    @brief  Controls display task rate and updates.
+    @brief  Controls display task and updates.
 */
 
-#include "displayTask.h"
+#include "displayModule.h"
 #include "pacer.h"
 #include "tinygl.h"
 #include "../fonts/font5x7_1.h"

@@ -1,10 +1,10 @@
-/** @file   buttonTask.c
-    @author David Liang
+/** @file   buttonModule.c
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
     @brief  Controls button task.
 */
 
-#include "buttonTask.h"
+#include "buttonModule.h"
 #include "button.h"
 #include "pacer.h"
 #include <stdbool.h>

@@ -1,11 +1,11 @@
-/** @file   navswitchTask.h
-    @author David Liang
+/** @file   navswitchModule.h
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
-    @brief  Controls navswitch task and update.
+    @brief  Controls navswitch task and updates.
 */
 
-#ifndef NAVSWITCHTASK_H
-#define NAVSWITCHTASK_H
+#ifndef NAVSWITCHMODULE_H
+#define NAVSWITCHMODULE_H
 
 #include "pacer.h"
 

@@ -1,11 +1,11 @@
-/** @file   displayTask.h
-    @author David Liang
+/** @file   displayModule.h
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
-    @brief  Controls navswitch task and update.
+    @brief  Controls display task and updates.
 */
 
-#ifndef DISPLAYTASK_H
-#define DISPLAYTASK_H
+#ifndef DISPLAYMODULE_H
+#define DISPLAYMODULE_H
 
 #include "pacer.h"
 

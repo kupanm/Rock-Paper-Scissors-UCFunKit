@@ -1,10 +1,10 @@
-/** @file   irTask.c
-    @author David Liang
+/** @file   irModule.c
+    @author David Liang and K.N. Mugutso
     @date   09/10/2022
     @brief  Controls IR communication task and updates.
 */
 
-#include "irTask.h"
+#include "irModule.h"
 #include "ir_uart.h"
 #include "pacer.h"
 #include <ctype.h>
