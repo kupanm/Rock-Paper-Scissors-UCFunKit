@@ -124,17 +124,17 @@ void updateState(result_t gameResult)
     if (gameResult != ONGOING) {
         // Prepare ledmat text for game end.
         setHorizontalText();
+            ledOff();
     }
     switch (gameResult) {
         case WIN:
             setText("  YOU WIN! \0");
+            ledOn();
             break;
         case LOSE:
-            ledOff();
             setText("  YOU LOSE! \0"); 
             break;
         case DRAW:
-            ledOff();
             setText("  DRAW! \0");
             break;
         default:
