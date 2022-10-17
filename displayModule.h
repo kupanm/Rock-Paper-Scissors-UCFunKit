@@ -1,7 +1,7 @@
 /** @file   displayModule.h
     @author David Liang and K.N. Mugutso
     @date   09/10/2022
-    @brief  Controls display task and updates.
+    @brief  Controls display tasks, actions, and updates.
 */
 
 #ifndef DISPLAYMODULE_H
@@ -12,23 +12,45 @@
 #define displayRATE 250
 
 /**
- * Initialises the display and its ticker.
+ * @brief Sets text font and rotation to vertical on ledmat.
+ * 
+ */
+void setVerticalText(void);
+
+/**
+ * @brief Changes text font and rotation to horizontal on ledmat on game end.
+ * 
+ */
+void setHorizontalText(void);
+
+/**
+ * @brief Initialises the display and its ticker
+ * 
+ * @param pacerRate The rate of the system pacer.
+ * @param messageRate The scrolling rate of the message.
  */
 void displayInit(pacer_rate_t pacerRate, uint16_t messageRate);
 
-/** 
- * Increments display tick and checks if it is the appropriate 
- * time to execute the display task.
-*/
+/**
+ * @brief Increments display tick and checks if it is the appropriate 
+ *        time to execute the display task.
+ * 
+ * @param pacerRate The rate of the system pacer.
+ */
 void displayTaskCheck(pacer_rate_t pacerRate);
 
-/* Displays the player's hand on the LedMat.*/
+/**
+ * @brief Displays the player's hand on the LedMat.
+ * 
+ * @param hand The player's hand to display.
+ */
 void displayHand(char hand);
 
-/* Displays a scrolling message on the LedMat. */
+/**
+ * @brief Displays a scrolling message on the LedMat.
+ * 
+ * @param text The message to display.
+ */
 void setText(char* text);
-
-/* Changes text font and rotation on LedMat on game end.*/
-void gameFinishedText(void);
 
 #endif

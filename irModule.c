@@ -5,15 +5,16 @@
 */
 
 #include "irModule.h"
-#include "ir_uart.h"
 #include "pacer.h"
+#include "ir_uart.h"
+
 #include <ctype.h>
 
 static uint8_t irPutTick;
 static uint8_t irGetTick;
 
 /**
- * Initialises IR communication and their tickers.
+ * @brief Initialises IR communication and their tickers.
  * 
  */
 void irInit(void)
@@ -24,36 +25,43 @@ void irInit(void)
 }
 
 /**
- * Sends a character. 
+ * @brief Sends a character to another UCFK4.
+ * 
+ * @param sendChar The character to send.
  */
 static void irPutTask(char sendChar)
 {
     ir_uart_putc(sendChar);
 }
 
-/** 
- * Increments IR put tick and checks if it is the appropriate 
- * time to execute the IR put task.
-*/
+/**
+ * @brief Increments IR put tick and checks if it is the appropriate 
+ *        time to execute the IR put task.
+ * 
+ * @param pacerRate The system pacer rate.
+ * @param sendChar The character to send.
+ */
 void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar)
 {
     irPutTick++;
     if (irPutTick >= pacerRate/IRPUTRATE) {
         irPutTask(sendChar);
+        // Reset ticker.
         irPutTick = 0;
     }
 }
 
 /**
- * Receives a character if there is one available. 
+ * @brief Receives a character if there is one available. 
  * Otherwise, returns dummy character Y.
- * @return the character received or Y.
+ * 
+ * @return char The character received or Y.
  */
 static char irGetTask(void)
 {
     char receiveChar = 'Y';
     if (ir_uart_read_ready_p()) {
-        /* Error checking to account for IR interference */
+        // Error checking with isprint to account for IR interference
         char ch = ir_uart_getc();
             if (isprint(ch)) {
                 receiveChar = ch;
@@ -62,17 +70,20 @@ static char irGetTask(void)
     return receiveChar;
 }
 
-/** 
- * Increments IR get tick and checks if it is the appropriate 
- * time to execute the IR get task.
- * @return the character received or Y.
-*/
+/**
+ * @brief Increments IR get tick and checks if it is the appropriate 
+ *        time to execute the IR get task.
+ * 
+ * @param pacerRate The system pacer rate.
+ * @return char The character received or Y.
+ */
 char irGetTaskCheck(pacer_rate_t pacerRate)
 {
     irGetTick++;
     char receiveChar = 'Y';
     if (irGetTick >= pacerRate/IRGETRATE) {
         receiveChar = irGetTask();
+        // Reset ticker.
         irGetTick = 0;
     }
     return receiveChar;

@@ -7,23 +7,32 @@
 #include "ledModule.h"
 #include "led.h"
 
-/* Initialises the LED. */
+/**
+ * @brief Initialises the LED.
+ * 
+ */
 void ledInit(void)
 {
     led_init();
 
-    /* Start with led off. */
+    // Start with LED off.
     led_set(LED1, false);
 
 }
 
-/* Turns on the LED. */
+/**
+ * @brief Turns on the LED.
+ * 
+ */
 void ledOn(void)
 {
     led_set(LED1, true);
 }
 
-/* Turns on the LED. */
+/**
+ * @brief Turns off the LED.
+ * 
+ */
 void ledOff(void)
 {
     led_set(LED1, false);

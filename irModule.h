@@ -13,22 +13,27 @@
 #define IRGETRATE 100
 
 /**
- * Initialises IR communication and their tickers.
+ * @brief Initialises IR communication and their tickers.
  * 
  */
 void irInit(void);
 
-/** 
- * Increments IR put tick and checks if it is the appropriate 
- * time to execute the IR put task.
-*/
+/**
+ * @brief Increments IR put tick and checks if it is the appropriate 
+ *        time to execute the IR put task.
+ * 
+ * @param pacerRate The system pacer rate.
+ * @param sendChar The character to send.
+ */
 void irPutTaskCheck(pacer_rate_t pacerRate, char sendChar);
 
-/** 
- * Increments IR get tick and checks if it is the appropriate 
- * time to execute the IR get task.
- * @return the character received or Y.
-*/
+/**
+ * @brief Increments IR get tick and checks if it is the appropriate 
+ *        time to execute the IR get task.
+ * 
+ * @param pacerRate The system pacer rate.
+ * @return char The character received or Y.
+ */
 char irGetTaskCheck(pacer_rate_t pacerRate);
 
 #endif

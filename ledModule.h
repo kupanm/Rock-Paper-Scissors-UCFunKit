@@ -7,13 +7,22 @@
 #ifndef LEDMODULE_H
 #define LEDMODULE_H
 
-/* Initialises the LED. */
+/**
+ * @brief Initialises the LED.
+ * 
+ */
 void ledInit(void);
 
-/* Turns on the LED. */
+/**
+ * @brief Turns on the LED.
+ * 
+ */
 void ledOn(void);
 
-/* Turns on the LED. */
+/**
+ * @brief Turns off the LED.
+ * 
+ */
 void ledOff(void);
 
 #endif

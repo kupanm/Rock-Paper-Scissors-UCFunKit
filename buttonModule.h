@@ -12,15 +12,19 @@
 #define BUTTONRATE 20
 
 /**
- * Initialises the button.
+ * @brief Initialises the button and its ticker
+ * 
  */
 void buttonInit(void);
 
-/** 
- * Increments button tick and checks if it is the appropriate 
- * time to execute the button task.
- * @returns bool in regards to if the button has been pushed.
-*/
+/**
+ * @brief Increments button tick and checks if it is the appropriate 
+ *        time to execute the button task.
+ * 
+ * @param pacerRate The pacer rate of the system.
+ * @return true if the button has been pushed.
+ * @return false otherwise.
+ */
 bool buttonTaskCheck(pacer_rate_t pacerRate);
 
 #endif

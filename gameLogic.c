@@ -1,71 +1,103 @@
 /** @file   gameLogic.c
     @author David Liang and K.N. Mugutso
-    @date   08 Oct 2022
+    @date   08/10/2022
     @brief  Contains all game logic.
 */
 
-#include <stdbool.h>
 #include "system.h"
-#include "navswitch.h"
 #include "gameLogic.h"
+#include "navswitchModule.h"
+#include "displayModule.h"
+#include "ledModule.h"
 
-#define ROCK navswitch_push_event_p(NAVSWITCH_SOUTH)
-#define PAPER navswitch_push_event_p(NAVSWITCH_NORTH)
-#define SCISSORS navswitch_push_event_p(NAVSWITCH_EAST)
+#include <stdbool.h>
 
-
-/*Will return true if the player has won based on whether
-  they chose rock ('R'), paper ('P') or scissors ('S') */
+/**
+ * @brief Checks if the player has won the game.
+ * @param player The player's hand.
+ * @param otherPlayer The opponent's hand.
+ * @return true if the player wins the matchup.
+ * @return false otherwise.
+ */
 bool isWon(char player, char otherPlayer)
 {
     bool won = false;
     if (player == 'R' && otherPlayer == 'S') {
         won = true;
-    } else if (player == 'S' && otherPlayer == 'P') {
+    }
+    if (player == 'S' && otherPlayer == 'P') {
         won = true;    
-    } else if (player == 'P' && otherPlayer == 'R') {
+    }
+    if (player == 'P' && otherPlayer == 'R') {
         won = true;    
     }
     return won;
 }
 
-/*Will return true if the player has lost*/
+/**
+ * @brief Checks if the player has lost the game.
+ * @param player The player's hand.
+ * @param otherPlayer The opponent's hand.
+ * @return true if the player loses the matchup.
+ * @return false otherwise.
+ */
 bool isLoss(char player, char otherPlayer)
 {
     bool loss = false;
     if (player == 'R' && otherPlayer == 'P') {
         loss = true;    
-    } else if (player == 'S' && otherPlayer == 'R') {
+    }
+    if (player == 'S' && otherPlayer == 'R') {
         loss = true;    
-    } else if (player == 'P' && otherPlayer == 'S') {
+    }
+    if (player == 'P' && otherPlayer == 'S') {
         loss = true;    
     }
     return loss;
 }   
 
-/*Will return true if the player has drawn with the other player*/
+/**
+ * @brief Checks if the game has drawn.
+ * @param player The player's hand.
+ * @param otherPlayer The opponent's hand.
+ * @return true if the player 's hand is the same as the opponent's.
+ * @return false otherwise.
+ */
 bool isDraw(char player, char otherPlayer) 
 {
-    return (player == otherPlayer);
+    // X check to make sure game doesn't prematurely end.
+    return (player == otherPlayer && player != 'X');
 }
 
-/* Selects hand based on last navstick press */
+/**
+ * @brief Selects hand based on last navstick press
+ * 
+ * @param player The player's original hand.
+ * @return char The selected hand if a stick has been pressed.
+ *              The player's original hand otherwise.
+ */
 char selectHand(char player)
 {
     char handCharacter = player;
-    if (ROCK) {
+    if (isRock()) {
         handCharacter = 'R';
     }
-    if (PAPER) {
+    if (isPaper()) {
         handCharacter = 'P';
     }
-    if (SCISSORS) {
+    if (isScissors()) {
         handCharacter = 'S';
     }
     return handCharacter;
 }
 
-/* Checks the result of the game.*/
+/**
+ * @brief Checks the result of the game.
+ * 
+ * @param player The player's hand.
+ * @param otherPlayer The opponent's hand.
+ * @return result_t The result of the game. ONGOING if it hasn't changed.
+ */
 result_t checkGameResult(char player, char otherPlayer)
 {
     result_t gameResult = ONGOING;
@@ -79,4 +111,33 @@ result_t checkGameResult(char player, char otherPlayer)
         gameResult = DRAW;
     }
     return gameResult;
+}
+
+/**
+ * @brief Updates the game state if a result has been reached. 
+ *        Does nothing if game is still ongoing.
+ * 
+ * @param gameResult The result of the current game.
+ */
+void updateState(result_t gameResult)
+{
+    if (gameResult != ONGOING) {
+        // Prepare ledmat text for game end.
+        setHorizontalText();
+    }
+    switch (gameResult) {
+        case WIN:
+            setText("  YOU WIN! \0");
+            break;
+        case LOSE:
+            ledOff();
+            setText("  YOU LOSE! \0"); 
+            break;
+        case DRAW:
+            ledOff();
+            setText("  DRAW! \0");
+            break;
+        default:
+            break;
+    }
 }
