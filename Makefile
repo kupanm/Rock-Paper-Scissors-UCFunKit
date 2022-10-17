@@ -16,7 +16,10 @@ all: game.out
 
 
 # Compile: create object files from C source files. !!!*ATTENTION*!!!: may have to add the modules that the drivers also include such as system, pio, delay etc.
-game.o: game.c ../../drivers/avr/system.h ../../drivers/navswitch.h ../../drivers/button.h ../../drivers/avr/ir_uart.h ../../drivers/led.h gameLogic.h ../../utils/tinygl.h ../../fonts/font5x7_1.h buttonModule.h displayModule.h irModule.h navswitchModule.h
+game.o: game.c ../../drivers/avr/system.h gameLogic.h buttonModule.h displayModule.h irModule.h navswitchModule.h ledModule.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+gameLogic.o: gameLogic.c gameLogic.h navswitchModule.h displayModule.h ledModule.h ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 buttonModule.o: buttonModule.c buttonModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/button.h
@@ -25,10 +28,13 @@ buttonModule.o: buttonModule.c buttonModule.h ../../drivers/avr/system.h ../../u
 displayModule.o: displayModule.c displayModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../utils/tinygl.h ../../fonts/font5x7_1.h ../../fonts/font3x5_1.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-irModule.o: irModule.c irModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/avr/ir_uart.h
+irModule.o: irModule.c irModule.h ../../drivers/avr/system.h ../../drivers/avr/ir_uart.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 navswitchModule.o: navswitchModule.c navswitchModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/navswitch.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+ledModule.o: ledModule.c ledModule.h ../../drivers/avr/system.h ../../utils/pacer.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 navswitch.o: ../../drivers/navswitch.c ../../drivers/avr/delay.h ../../drivers/avr/pio.h ../../drivers/avr/system.h ../../drivers/navswitch.h
@@ -47,9 +53,6 @@ pio.o: ../../drivers/avr/pio.c ../../drivers/avr/pio.h ../../drivers/avr/system.
 	$(CC) -c $(CFLAGS) $< -o $@
 
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
-	$(CC) -c $(CFLAGS) $< -o $@
-
-gameLogic.o: gameLogic.c gameLogic.h ../../drivers/avr/system.h ../../drivers/navswitch.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 font.o: ../../utils/font.c ../../drivers/avr/system.h ../../utils/font.h
@@ -82,7 +85,7 @@ prescale.o: ../../drivers/avr/prescale.c ../../drivers/avr/prescale.h ../../driv
 
 
 # Link: create ELF output file from object files.
-game.out: game.o navswitch.o button.o ir_uart.o led.o pio.o system.o gameLogic.o font.o pacer.o tinygl.o timer.o timer0.o usart1.o display.o ledmat.o prescale.o buttonModule.o displayModule.o irModule.o navswitchModule.o
+game.out: game.o navswitch.o button.o ir_uart.o led.o pio.o system.o gameLogic.o font.o pacer.o tinygl.o timer.o timer0.o usart1.o display.o ledmat.o prescale.o buttonModule.o displayModule.o irModule.o navswitchModule.o ledModule.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
