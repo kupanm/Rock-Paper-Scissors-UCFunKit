@@ -31,10 +31,10 @@ displayModule.o: displayModule.c displayModule.h ../../drivers/avr/system.h ../.
 irModule.o: irModule.c irModule.h ../../drivers/avr/system.h ../../drivers/avr/ir_uart.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-navswitchModule.o: navswitchModule.c navswitchModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/navswitch.h
+ledModule.o: ledModule.c ledModule.h ../../drivers/avr/system.h ../../utils/pacer.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-ledModule.o: ledModule.c ledModule.h ../../drivers/avr/system.h ../../utils/pacer.h
+navswitchModule.o: navswitchModule.c navswitchModule.h ../../drivers/avr/system.h ../../utils/pacer.h ../../drivers/navswitch.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 navswitch.o: ../../drivers/navswitch.c ../../drivers/avr/delay.h ../../drivers/avr/pio.h ../../drivers/avr/system.h ../../drivers/navswitch.h
