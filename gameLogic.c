@@ -124,7 +124,7 @@ void updateState(result_t gameResult)
     if (gameResult != ONGOING) {
         // Prepare ledmat text for game end.
         setHorizontalText();
-            ledOff();
+        ledOff();
     }
     switch (gameResult) {
         case WIN:

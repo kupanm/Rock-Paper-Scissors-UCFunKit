@@ -20,7 +20,6 @@ void navInit(void)
 {
     navswitch_init();
     navTick = 0;
-
 }
 
 /**

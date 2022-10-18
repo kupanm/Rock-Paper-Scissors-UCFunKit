@@ -55,6 +55,7 @@ static void mainGame(void)
 
         if (!gameFinished) {
 
+            // Update player hand.
             player = selectHand(player);
 
             // Chooses to either display or hide the player's hand.

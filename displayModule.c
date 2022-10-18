@@ -47,7 +47,6 @@ void displayInit(pacer_rate_t pacerRate, uint16_t messageRate)
     tinygl_text_speed_set (messageRate);
     setVerticalText();
     displayTick = 0;
-
 }
 
 /**

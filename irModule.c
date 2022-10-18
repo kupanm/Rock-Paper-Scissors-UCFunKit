@@ -63,9 +63,9 @@ static char irGetTask(void)
     if (ir_uart_read_ready_p()) {
         // Error checking with isprint to account for IR interference
         char ch = ir_uart_getc();
-            if (isprint(ch)) {
-                receiveChar = ch;
-            }
+        if (isprint(ch)) {
+            receiveChar = ch;
+        }
     }
     return receiveChar;
 }

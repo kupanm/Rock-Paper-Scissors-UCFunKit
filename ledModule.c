@@ -17,7 +17,6 @@ void ledInit(void)
 
     // Start with LED off.
     led_set(LED1, false);
-
 }
 
 /**

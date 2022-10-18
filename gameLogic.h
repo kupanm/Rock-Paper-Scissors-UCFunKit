@@ -14,7 +14,7 @@
  *        Ongoing if it hasn't finished yet.
  * 
  */
-typedef enum  {
+typedef enum {
     ONGOING,
     WIN,
     LOSE,
